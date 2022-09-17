@@ -15,6 +15,8 @@ const Categories: React.FC<Props> = ({setCategory, selected, custom}) => {
 
   const newArr = categories?.filter(item => item.name !== 'All');
 
+  console.log('categories', selected)
+
   return (
     <View>
       <FlatList

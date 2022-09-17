@@ -22,7 +22,7 @@ export const productslice = createSlice({
   reducers: {
     filterProduct: (state, action: PayloadAction<string>) => {
       if (action.payload === 'All') {
-        state.selectedFilter = '';
+        state.selectedFilter = 'All';
       } else {
         const filteredArr = state.products?.filter(
           item => item.category === action.payload,
@@ -43,7 +43,7 @@ export const productslice = createSlice({
     emptyDetails: (state, action: PayloadAction<null>) => {
       state.details = action.payload;
     },
-    addProduct: (state, action: PayloadAction<object>) => {
+    addProduct: (state, action: PayloadAction<any>) => {
       let newObj = {
         avatar: action.payload.Avatar,
         category: action.payload.Category,
@@ -61,6 +61,7 @@ export const productslice = createSlice({
   extraReducers: builder => {
     builder.addCase(getProductsDispatch.fulfilled, (state, {payload}) => {
       state.products = payload;
+      state.selectedFilter = "All"
     });
     builder.addCase(getCategoriesDispatch.fulfilled, (state, {payload}) => {
       const newArr = [{_id: '123#abc', name: 'All'}, ...payload];

@@ -60,7 +60,7 @@ const Home: React.FC = () => {
           <Categories selected={selectedFilter} />
           <View style={{flex: 1}}>
             <FlatList
-              data={!selectedFilter ? products : filteredProducts}
+              data={selectedFilter === "All" ? products : filteredProducts}
               keyExtractor={item => item._id}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={styles.productCont}

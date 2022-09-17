@@ -13,6 +13,7 @@ import Categories from '../Components/Categories';
 import {addProductDispatch, setCategoryState} from '../redux/appSlice';
 import {useAppDispatch, useAppSelector} from '../redux/hooks';
 import {useNavigation} from '@react-navigation/native';
+import Snackbar from 'react-native-snackbar';
 
 const {width} = Dimensions.get('window');
 
@@ -34,7 +35,12 @@ const AddProduct: React.FC = () => {
       !imgLink.trim() ||
       !category.trim()
     ) {
-      console.log('show error');
+      Snackbar.show({
+        text: 'Please Fill All Details!',
+        duration: Snackbar.LENGTH_SHORT,
+        backgroundColor: '#fd5a48',
+        textColor: '#FFFFFF',
+      });
     } else {
       let payload = {
         Name: title,
@@ -42,9 +48,10 @@ const AddProduct: React.FC = () => {
         Category: category,
         Description: desc,
         Avatar: imgLink,
-        DeveloperEmail: 'zafarustad123@gmail.com',
+        DeveloperEmail: 'zafarustad530@gmail.com',
       };
       dispatch(addProductDispatch(payload));
+      setCategory('');
       navigation.goBack();
     }
   };
